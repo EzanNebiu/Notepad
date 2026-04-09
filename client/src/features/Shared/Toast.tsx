@@ -1,1 +1,1 @@
-export { default } from '../../components/Shared/Toast';
+export { Toast } from '../../components/Shared/Toast';
