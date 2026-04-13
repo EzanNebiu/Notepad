@@ -10,7 +10,7 @@ export const generateToken = (): string => {
 
 export const isValidSlug = (slug: string): boolean => {
   const slugRegex = /^[a-zA-Z0-9_-]+$/;
-  return slugRegex.test(slug) && slug.length >= 3 && slug.length <= 100;
+  return slugRegex.test(slug) && slug.length >= 1 && slug.length <= 100;
 };
 
 const reservedSlugs = [

@@ -18,7 +18,7 @@ export const Footer = () => {
         </Link>
       </div>
       <div className="mt-2 text-xs">
-        © {new Date().getFullYear()} Notepad. Fast, shareable notes.
+        © {new Date().getFullYear()} Notepad. Fast, shareable notes. Made by Ezan Nebija.
       </div>
     </footer>
   );

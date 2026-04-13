@@ -6,10 +6,16 @@ interface LayoutProps {
 }
 
 export const Layout = ({ children }: LayoutProps) => {
-  const { resolvedTheme } = useTheme();
+  useTheme(); // Initialize theme
 
   return (
-    <div className={`min-h-screen ${resolvedTheme === 'dark' ? 'bg-gray-900 text-gray-100' : 'bg-gray-50 text-gray-900'}`}>
+    <div 
+      className="
+        min-h-screen transition-colors duration-200
+        bg-gray-50 dark:bg-[#0f1419]
+        text-gray-900 dark:text-[#e2e8f0]
+      "
+    >
       {children}
     </div>
   );

@@ -17,9 +17,10 @@ export const MarkdownPreview = ({ content, monospace }: MarkdownPreviewProps) =>
     <div
       className={`
         w-full min-h-[500px] p-6
-        bg-white dark:bg-gray-800
-        text-gray-900 dark:text-gray-100
-        border border-gray-300 dark:border-gray-700
+        transition-colors duration-200
+        bg-white dark:bg-[#1a1f2e]
+        text-gray-900 dark:text-[#e2e8f0]
+        border border-gray-300 dark:border-[#2d3748]
         rounded-lg
         prose dark:prose-invert max-w-none
         ${monospace ? 'font-mono' : 'font-sans'}

@@ -1,8 +1,5 @@
 import { SaveStatus } from '@shared/types';
 import { CircularProgress } from '@mui/material';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import ErrorIcon from '@mui/icons-material/Error';
-import EditIcon from '@mui/icons-material/Edit';
 
 interface SaveStatusIndicatorProps {
   status: SaveStatus;
@@ -21,21 +18,21 @@ export const SaveStatusIndicator = ({ status }: SaveStatusIndicatorProps) => {
       case 'saved':
         return (
           <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
-            <CheckCircleIcon sx={{ fontSize: 16 }} />
+            <span>✓</span>
             <span>Saved</span>
           </div>
         );
       case 'unsaved':
         return (
           <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400">
-            <EditIcon sx={{ fontSize: 16 }} />
+            <span>✏️</span>
             <span>Unsaved</span>
           </div>
         );
       case 'error':
         return (
           <div className="flex items-center gap-2 text-red-600 dark:text-red-400">
-            <ErrorIcon sx={{ fontSize: 16 }} />
+            <span>⚠️</span>
             <span>Error</span>
           </div>
         );

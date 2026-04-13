@@ -31,7 +31,6 @@ export const useNote = (slug: string, token?: string): UseNoteReturn => {
   const [isOwner, setIsOwner] = useState(false);
   const [isReadOnly, setIsReadOnly] = useState(false);
   const [pendingContent, setPendingContent] = useState<string | null>(null);
-  const [pendingChanges, setPendingChanges] = useState<Partial<Note>>({});
 
   const debouncedContent = useDebounce(pendingContent, AUTOSAVE_DEBOUNCE_MS);
 
@@ -44,10 +43,14 @@ export const useNote = (slug: string, token?: string): UseNoteReturn => {
       setIsOwner(response.isOwner);
       setIsReadOnly(response.isReadOnly);
     } catch (err) {
-      if ((err as { response?: { data?: { code?: string } } }).response?.data?.code === 'PASSWORD_REQUIRED') {
+      const errorResponse = (err as { response?: { data?: { code?: string; message?: string }; status?: number } }).response;
+      
+      if (errorResponse?.data?.code === 'PASSWORD_REQUIRED') {
         setError('PASSWORD_REQUIRED');
+      } else if (errorResponse?.status === 404) {
+        setError(errorResponse?.data?.message || 'Note not found');
       } else {
-        setError('Failed to load note');
+        setError(errorResponse?.data?.message || 'Failed to load note');
       }
     } finally {
       setLoading(false);

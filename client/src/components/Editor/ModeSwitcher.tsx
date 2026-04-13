@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { NoteMode } from '@shared/types';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 

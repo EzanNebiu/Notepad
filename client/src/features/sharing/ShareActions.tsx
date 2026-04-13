@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { Button, IconButton, Tooltip } from '@mui/material';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { Button, Tooltip } from '@mui/material';
 import { copyToClipboard } from '../../utils/clipboard';
 import { getFullUrl } from '../../utils/urlUtils';
 import { Toast } from '../Shared/Toast';
@@ -51,12 +50,12 @@ export const ShareActions = ({
                 className="flex-1 px-3 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded text-sm text-gray-900 dark:text-gray-100"
               />
               <Tooltip title="Copy">
-                <IconButton
+                <Button
                   size="small"
                   onClick={() => handleCopy(editableUrl, 'Editable')}
                 >
-                  <ContentCopyIcon fontSize="small" />
-                </IconButton>
+                  📋
+                </Button>
               </Tooltip>
             </div>
           </div>
@@ -77,12 +76,12 @@ export const ShareActions = ({
                 className="flex-1 px-3 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded text-sm text-gray-900 dark:text-gray-100"
               />
               <Tooltip title="Copy">
-                <IconButton
+                <Button
                   size="small"
                   onClick={() => handleCopy(shareUrl, 'Share')}
                 >
-                  <ContentCopyIcon fontSize="small" />
-                </IconButton>
+                  📋
+                </Button>
               </Tooltip>
             </div>
           </div>

@@ -1,13 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { IconButton, Tooltip, Switch, Menu, MenuItem } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import LockIcon from '@mui/icons-material/Lock';
-import EditIcon from '@mui/icons-material/Edit';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import SettingsIcon from '@mui/icons-material/Settings';
-import SpellcheckIcon from '@mui/icons-material/Spellcheck';
-import CodeIcon from '@mui/icons-material/Code';
+import { Tooltip, Menu, MenuItem, Button } from '@mui/material';
 import { useState } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 import { generateSlug } from '../../utils/urlUtils';
@@ -36,7 +28,7 @@ export const TopToolbar = ({
   onChangeSlugClick,
 }: TopToolbarProps) => {
   const navigate = useNavigate();
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [toolsAnchor, setToolsAnchor] = useState<null | HTMLElement>(null);
 
   const handleNewNote = () => {
@@ -57,12 +49,12 @@ export const TopToolbar = ({
   };
 
   return (
-    <div className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+    <div className="border-b border-gray-200 dark:border-[#2d3748] bg-white dark:bg-[#1a1f2e] transition-colors duration-200">
       <div className="max-w-5xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <h1
-              className="text-xl font-bold text-gray-900 dark:text-gray-100 cursor-pointer"
+              className="text-xl font-bold text-gray-900 dark:text-[#e2e8f0] cursor-pointer hover:text-blue-600 dark:hover:text-[#60a5fa] transition-colors"
               onClick={() => navigate('/')}
             >
               Notepad
@@ -72,49 +64,49 @@ export const TopToolbar = ({
 
           <div className="flex items-center gap-2">
             <Tooltip title="New Note">
-              <IconButton onClick={handleNewNote} size="small">
-                <AddIcon />
-              </IconButton>
+              <Button onClick={handleNewNote} size="small">
+                +
+              </Button>
             </Tooltip>
 
             {isOwner && (
               <>
                 <Tooltip title="Password Protection">
-                  <IconButton onClick={onPasswordClick} size="small">
-                    <LockIcon />
-                  </IconButton>
+                  <Button onClick={onPasswordClick} size="small">
+                    🔒
+                  </Button>
                 </Tooltip>
 
                 <Tooltip title="Change URL">
-                  <IconButton onClick={onChangeSlugClick} size="small">
-                    <EditIcon />
-                  </IconButton>
+                  <Button onClick={onChangeSlugClick} size="small">
+                    ✏️
+                  </Button>
                 </Tooltip>
               </>
             )}
 
             <Tooltip title={`Spell Check: ${spellCheck ? 'On' : 'Off'}`}>
-              <IconButton onClick={onSpellCheckToggle} size="small">
-                <SpellcheckIcon color={spellCheck ? 'primary' : 'inherit'} />
-              </IconButton>
+              <Button onClick={onSpellCheckToggle} size="small">
+                {spellCheck ? '✓' : 'ABC'}
+              </Button>
             </Tooltip>
 
             <Tooltip title={`Monospace: ${monospace ? 'On' : 'Off'}`}>
-              <IconButton onClick={onMonospaceToggle} size="small">
-                <CodeIcon color={monospace ? 'primary' : 'inherit'} />
-              </IconButton>
+              <Button onClick={onMonospaceToggle} size="small">
+                {monospace ? '{;}' : 'Tt'}
+              </Button>
             </Tooltip>
 
             <Tooltip title={`${resolvedTheme === 'dark' ? 'Light' : 'Dark'} Mode`}>
-              <IconButton onClick={handleThemeToggle} size="small">
-                {resolvedTheme === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
-              </IconButton>
+              <Button onClick={handleThemeToggle} size="small">
+                {resolvedTheme === 'dark' ? '☀️' : '🌙'}
+              </Button>
             </Tooltip>
 
             <Tooltip title="Tools">
-              <IconButton onClick={handleToolsClick} size="small">
-                <SettingsIcon />
-              </IconButton>
+              <Button onClick={handleToolsClick} size="small">
+                ⚙️
+              </Button>
             </Tooltip>
 
             <Menu

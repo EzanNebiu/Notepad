@@ -14,7 +14,6 @@ import { ChangeSlugDialog } from '../components/Modals/ChangeSlugDialog';
 import { Footer } from '../components/Footer/Footer';
 import { useNote } from '../hooks/useNote';
 import { CircularProgress } from '@mui/material';
-import { noteApi } from '../services/noteApi';
 
 export const NotePage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -167,7 +166,7 @@ export const NotePage = () => {
         <div className="space-y-6">
           {renderEditor()}
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 border-t border-gray-200 dark:border-[#2d3748]">
             <ModeSwitcher
               mode={note.mode}
               onChange={updateMode}
@@ -177,7 +176,7 @@ export const NotePage = () => {
           </div>
 
           {isOwner && (
-            <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+            <div className="pt-4 border-t border-gray-200 dark:border-[#2d3748]">
               <ShareActions
                 slug={note.slug}
                 editableToken={note.editableToken}

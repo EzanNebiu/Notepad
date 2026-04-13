@@ -50,14 +50,14 @@ export const CodeEditor = ({
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+        <label className="text-sm font-medium text-gray-700 dark:text-[#a0aec0]">
           Language:
         </label>
         <select
           value={language}
           onChange={handleLanguageChange}
           disabled={isReadOnly}
-          className="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm"
+          className="px-3 py-1 border border-gray-300 dark:border-[#2d3748] rounded bg-white dark:bg-[#232936] text-gray-900 dark:text-[#e2e8f0] text-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#60a5fa]"
         >
           {languages.map((lang) => (
             <option key={lang} value={lang}>
@@ -75,11 +75,13 @@ export const CodeEditor = ({
         placeholder={isReadOnly ? 'This note is read-only' : 'Paste your code here...'}
         className={`
           w-full h-[500px] p-6 resize-y
+          transition-colors duration-200
           bg-gray-900 dark:bg-black
-          text-gray-100
-          border border-gray-700 dark:border-gray-800
+          text-gray-100 dark:text-[#e2e8f0]
+          border border-gray-700 dark:border-[#2d3748]
           rounded-lg
-          focus:outline-none focus:ring-2 focus:ring-blue-500
+          placeholder:text-gray-500 dark:placeholder:text-[#718096]
+          focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#60a5fa]
           font-mono
           ${isReadOnly ? 'cursor-not-allowed opacity-75' : ''}
         `}

@@ -13,7 +13,6 @@ interface NoteEditorProps {
 
 export const NoteEditor = ({
   content,
-  mode,
   spellCheck,
   monospace,
   isReadOnly,
@@ -32,11 +31,13 @@ export const NoteEditor = ({
       placeholder={isReadOnly ? 'This note is read-only' : 'Start typing...'}
       className={`
         w-full h-[500px] p-6 resize-y
-        bg-white dark:bg-gray-800
-        text-gray-900 dark:text-gray-100
-        border border-gray-300 dark:border-gray-700
+        transition-colors duration-200
+        bg-white dark:bg-[#1a1f2e]
+        text-gray-900 dark:text-[#e2e8f0]
+        border border-gray-300 dark:border-[#2d3748]
         rounded-lg
-        focus:outline-none focus:ring-2 focus:ring-blue-500
+        placeholder:text-gray-400 dark:placeholder:text-[#718096]
+        focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#60a5fa]
         ${monospace ? 'font-mono' : 'font-sans'}
         ${isReadOnly ? 'cursor-not-allowed opacity-75' : ''}
       `}

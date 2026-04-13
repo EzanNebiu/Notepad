@@ -7,7 +7,6 @@ import {
   Button,
   TextField,
   Typography,
-  Divider,
 } from '@mui/material';
 
 interface PasswordDialogProps {

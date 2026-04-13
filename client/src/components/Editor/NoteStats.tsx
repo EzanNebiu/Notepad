@@ -10,7 +10,7 @@ export const NoteStats = ({ content, updatedAt }: NoteStatsProps) => {
   const charCount = countCharacters(content);
 
   return (
-    <div className="flex flex-wrap gap-6 text-sm text-gray-600 dark:text-gray-400">
+    <div className="flex flex-wrap gap-6 text-sm text-gray-600 dark:text-[#a0aec0]">
       <div className="flex items-center gap-2">
         <span className="font-medium">Words:</span>
         <span>{wordCount.toLocaleString()}</span>

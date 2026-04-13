@@ -42,9 +42,24 @@ mongoose
   .connect(config.mongoUri)
   .then(() => {
     console.log('✓ Connected to MongoDB');
-    app.listen(config.port, () => {
+    const server = app.listen(config.port, () => {
       console.log(`✓ Server running on port ${config.port}`);
     });
+
+    // Handle graceful shutdown
+    const gracefulShutdown = () => {
+      console.log('\n⏳ Shutting down gracefully...');
+      server.close(() => {
+        console.log('✓ Server closed');
+        mongoose.connection.close(false).then(() => {
+          console.log('✓ MongoDB connection closed');
+          process.exit(0);
+        });
+      });
+    };
+
+    process.on('SIGTERM', gracefulShutdown);
+    process.on('SIGINT', gracefulShutdown);
   })
   .catch((error) => {
     console.error('MongoDB connection error:', error);
