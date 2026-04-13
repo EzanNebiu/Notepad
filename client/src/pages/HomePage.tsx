@@ -55,12 +55,12 @@ export const HomePage = () => {
 
   return (
     <Layout>
-      <div className="flex items-center justify-center min-h-screen px-4">
-        <div className="text-center max-w-2xl">
-          <h1 className="text-5xl font-bold mb-4 text-gray-900 dark:text-[#e2e8f0]">
+      <div className="flex items-center justify-center min-h-screen px-4 py-8 sm:py-0">
+        <div className="text-center max-w-2xl w-full">
+          <h1 className="text-3xl sm:text-5xl font-bold mb-3 sm:mb-4 text-gray-900 dark:text-[#e2e8f0]">
             Notepad
           </h1>
-          <p className="text-xl mb-8 text-gray-600 dark:text-[#a0aec0]">
+          <p className="text-base sm:text-xl mb-6 sm:mb-8 text-gray-600 dark:text-[#a0aec0]">
             Fast, shareable online notes. Each note lives at its own URL.
           </p>
           
@@ -70,13 +70,18 @@ export const HomePage = () => {
                 {slugError}
               </Alert>
             )}
-            <div className="flex gap-3 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button
                 variant="contained"
                 size="large"
                 onClick={handleQuickCreate}
                 disabled={creating}
-                sx={{ minWidth: 200, py: 1.5 }}
+                fullWidth
+                sx={{ 
+                  minWidth: { xs: '100%', sm: 200 }, 
+                  py: { xs: 1.75, sm: 1.5 },
+                  fontSize: { xs: '1rem', sm: '0.875rem' }
+                }}
               >
                 {creating ? 'Creating...' : '+ Create New Note'}
               </Button>
@@ -85,7 +90,12 @@ export const HomePage = () => {
                 size="large"
                 onClick={handleCustomCreate}
                 disabled={creating}
-                sx={{ minWidth: 200, py: 1.5 }}
+                fullWidth
+                sx={{ 
+                  minWidth: { xs: '100%', sm: 200 }, 
+                  py: { xs: 1.75, sm: 1.5 },
+                  fontSize: { xs: '1rem', sm: '0.875rem' }
+                }}
               >
                 Custom URL
               </Button>

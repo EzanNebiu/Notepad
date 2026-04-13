@@ -50,35 +50,47 @@ export const TopToolbar = ({
 
   return (
     <div className="border-b border-gray-200 dark:border-[#2d3748] bg-white dark:bg-[#1a1f2e] transition-colors duration-200">
-      <div className="max-w-5xl mx-auto px-4 py-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+      <div className="max-w-5xl mx-auto px-3 sm:px-4 py-2 sm:py-3">
+        <div className="flex items-center justify-between gap-2">
+          {/* Left side */}
+          <div className="flex items-center gap-2 sm:gap-4 min-w-0">
             <h1
-              className="text-xl font-bold text-gray-900 dark:text-[#e2e8f0] cursor-pointer hover:text-blue-600 dark:hover:text-[#60a5fa] transition-colors"
+              className="text-base sm:text-xl font-bold text-gray-900 dark:text-[#e2e8f0] cursor-pointer hover:text-blue-600 dark:hover:text-[#60a5fa] transition-colors whitespace-nowrap"
               onClick={() => navigate('/')}
             >
               Notepad
             </h1>
-            <SaveStatusIndicator status={saveStatus} />
+            <div className="hidden sm:block">
+              <SaveStatusIndicator status={saveStatus} />
+            </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          {/* Right side - Responsive buttons */}
+          <div className="flex items-center gap-1 sm:gap-2">
+            {/* Always visible buttons */}
             <Tooltip title="New Note">
-              <Button onClick={handleNewNote} size="small">
+              <Button onClick={handleNewNote} size="small" sx={{ minWidth: '32px', px: 0.5 }}>
                 +
               </Button>
             </Tooltip>
 
+            <Tooltip title={`${resolvedTheme === 'dark' ? 'Light' : 'Dark'} Mode`}>
+              <Button onClick={handleThemeToggle} size="small" sx={{ minWidth: '32px', px: 0.5 }}>
+                {resolvedTheme === 'dark' ? '☀️' : '🌙'}
+              </Button>
+            </Tooltip>
+
+            {/* Desktop-only buttons */}
             {isOwner && (
               <>
                 <Tooltip title="Password Protection">
-                  <Button onClick={onPasswordClick} size="small">
+                  <Button onClick={onPasswordClick} size="small" className="hidden sm:inline-flex" sx={{ minWidth: '32px', px: 0.5 }}>
                     🔒
                   </Button>
                 </Tooltip>
 
                 <Tooltip title="Change URL">
-                  <Button onClick={onChangeSlugClick} size="small">
+                  <Button onClick={onChangeSlugClick} size="small" className="hidden sm:inline-flex" sx={{ minWidth: '32px', px: 0.5 }}>
                     ✏️
                   </Button>
                 </Tooltip>
@@ -86,25 +98,20 @@ export const TopToolbar = ({
             )}
 
             <Tooltip title={`Spell Check: ${spellCheck ? 'On' : 'Off'}`}>
-              <Button onClick={onSpellCheckToggle} size="small">
+              <Button onClick={onSpellCheckToggle} size="small" className="hidden sm:inline-flex" sx={{ minWidth: '32px', px: 0.5 }}>
                 {spellCheck ? '✓' : 'ABC'}
               </Button>
             </Tooltip>
 
             <Tooltip title={`Monospace: ${monospace ? 'On' : 'Off'}`}>
-              <Button onClick={onMonospaceToggle} size="small">
+              <Button onClick={onMonospaceToggle} size="small" className="hidden sm:inline-flex" sx={{ minWidth: '32px', px: 0.5 }}>
                 {monospace ? '{;}' : 'Tt'}
               </Button>
             </Tooltip>
 
-            <Tooltip title={`${resolvedTheme === 'dark' ? 'Light' : 'Dark'} Mode`}>
-              <Button onClick={handleThemeToggle} size="small">
-                {resolvedTheme === 'dark' ? '☀️' : '🌙'}
-              </Button>
-            </Tooltip>
-
-            <Tooltip title="Tools">
-              <Button onClick={handleToolsClick} size="small">
+            {/* Menu button - always visible */}
+            <Tooltip title="More Options">
+              <Button onClick={handleToolsClick} size="small" sx={{ minWidth: '32px', px: 0.5 }}>
                 ⚙️
               </Button>
             </Tooltip>
@@ -114,11 +121,34 @@ export const TopToolbar = ({
               open={Boolean(toolsAnchor)}
               onClose={handleToolsClose}
             >
+              {/* Mobile-only menu items */}
+              {isOwner && (
+                <>
+                  <MenuItem onClick={() => { onPasswordClick(); handleToolsClose(); }} className="sm:hidden">
+                    🔒 Password Protection
+                  </MenuItem>
+                  <MenuItem onClick={() => { onChangeSlugClick(); handleToolsClose(); }} className="sm:hidden">
+                    ✏️ Change URL
+                  </MenuItem>
+                </>
+              )}
+              <MenuItem onClick={() => { onSpellCheckToggle(); handleToolsClose(); }} className="sm:hidden">
+                {spellCheck ? '✓' : 'ABC'} Spell Check: {spellCheck ? 'On' : 'Off'}
+              </MenuItem>
+              <MenuItem onClick={() => { onMonospaceToggle(); handleToolsClose(); }} className="sm:hidden">
+                {monospace ? '{;}' : 'Tt'} Monospace: {monospace ? 'On' : 'Off'}
+              </MenuItem>
+              {/* Always visible menu items */}
               <MenuItem onClick={() => navigate('/about')}>About</MenuItem>
               <MenuItem onClick={() => navigate('/privacy')}>Privacy</MenuItem>
               <MenuItem onClick={() => navigate('/terms')}>Terms</MenuItem>
             </Menu>
           </div>
+        </div>
+        
+        {/* Mobile save indicator */}
+        <div className="sm:hidden mt-1">
+          <SaveStatusIndicator status={saveStatus} />
         </div>
       </div>
     </div>

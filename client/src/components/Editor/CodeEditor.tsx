@@ -57,7 +57,7 @@ export const CodeEditor = ({
           value={language}
           onChange={handleLanguageChange}
           disabled={isReadOnly}
-          className="px-3 py-1 border border-gray-300 dark:border-[#2d3748] rounded bg-white dark:bg-[#232936] text-gray-900 dark:text-[#e2e8f0] text-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#60a5fa]"
+          className="px-2 sm:px-3 py-1 border border-gray-300 dark:border-[#2d3748] rounded bg-white dark:bg-[#232936] text-gray-900 dark:text-[#e2e8f0] text-xs sm:text-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#60a5fa]"
         >
           {languages.map((lang) => (
             <option key={lang} value={lang}>
@@ -74,7 +74,7 @@ export const CodeEditor = ({
         spellCheck={false}
         placeholder={isReadOnly ? 'This note is read-only' : 'Paste your code here...'}
         className={`
-          w-full h-[500px] p-6 resize-y
+          w-full p-4 sm:p-6 resize-y
           transition-colors duration-200
           bg-gray-900 dark:bg-black
           text-gray-100 dark:text-[#e2e8f0]
@@ -87,6 +87,8 @@ export const CodeEditor = ({
         `}
         style={{
           minHeight: '300px',
+          height: '60vh',
+          maxHeight: '600px',
           lineHeight: '1.5',
           fontSize: '14px',
           tabSize: 2,

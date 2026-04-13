@@ -30,7 +30,7 @@ export const NoteEditor = ({
       readOnly={isReadOnly}
       placeholder={isReadOnly ? 'This note is read-only' : 'Start typing...'}
       className={`
-        w-full h-[500px] p-6 resize-y
+        w-full p-4 sm:p-6 resize-y
         transition-colors duration-200
         bg-white dark:bg-[#1a1f2e]
         text-gray-900 dark:text-[#e2e8f0]
@@ -43,6 +43,8 @@ export const NoteEditor = ({
       `}
       style={{
         minHeight: '300px',
+        height: '60vh',
+        maxHeight: '600px',
         lineHeight: '1.6',
         fontSize: '15px',
       }}
