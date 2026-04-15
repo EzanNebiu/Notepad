@@ -13,9 +13,6 @@ export const Footer = () => {
         <Link to="/terms" className="hover:underline">
           Terms
         </Link>
-        <Link to="/contact" className="hover:underline">
-          Contact
-        </Link>
       </div>
       <div className="mt-2 text-xs">
         © {new Date().getFullYear()} Notepad. Fast, shareable notes. Made by Ezan Nebija.

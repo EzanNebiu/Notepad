@@ -4,7 +4,7 @@ import { NotePage } from '../pages/NotePage';
 import { AboutPage } from '../pages/AboutPage';
 import { PrivacyPage } from '../pages/PrivacyPage';
 import { TermsPage } from '../pages/TermsPage';
-import { ContactPage } from '../pages/ContactPage';
+
 
 export const App = () => {
   return (
@@ -14,7 +14,6 @@ export const App = () => {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/terms" element={<TermsPage />} />
-        <Route path="/contact" element={<ContactPage />} />
         <Route path="/:slug" element={<NotePage />} />
       </Routes>
     </BrowserRouter>
